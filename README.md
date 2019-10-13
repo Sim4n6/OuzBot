@@ -1,4 +1,4 @@
-# Stats-Twitter Bot
+# Ouz Bot
 A twitter bot for analyzing some stats using tweepy.
 
 #### commands
