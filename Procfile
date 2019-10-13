@@ -1,2 +1,2 @@
-web: gunicorn Stats-Bot.wsgi --log-file -
+web: gunicorn Stats-Bot:app --log-file -
 
