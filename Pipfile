@@ -4,15 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-black = "*"
+black = "==19.3b0"
 pre-commit = "*"
 
 [packages]
 tweepy = "*"
 python-dotenv = "*"
+flask = "*"
 
 [requires]
-python_version = "3.7.4"
+python_version = "3.7"
 
 [pipenv]
-allow_prereleases = true
+allow_prereleases = false
