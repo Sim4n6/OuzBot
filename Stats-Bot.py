@@ -8,30 +8,25 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 
-def get_followers(api):
+def get_followers_details(api):
+
     logger.info("Retrieving my followers ...")
-    followers = tweepy.Cursor(api.followers).items()
-    for i, follower in enumerate(followers):
-        logger.info(f"My follower {i} name :  {follower.name}")
-
-    return followers
+    for i, follower in enumerate(tweepy.Cursor(api.followers).items()):
+        logger.info(f"Follower {i} name :  {follower.name}")
+        get_user_detail(api, i, follower.id)
 
 
-def get_user_detail(api, follower):
+def get_user_detail(api, i, follower):
 
     logger.info("get user details needed.")
     user = api.get_user(follower)
     logger.info(
-        f"User name: {user.screen_name} - {user.followers_count} - is following ? {user.following}"
+        f"Username {i}: {user.screen_name} - {user.name} - \n\t is following ? {user.following} - {user.id} - {user.description} - \n\tfollowers count:{user.followers_count} - Statuses count: {user.statuses_count}"
     )
-
-    return user
 
 
 if __name__ == "__main__":
 
     logger.info("Started logging ...")
     api = create_api()
-    followers = get_followers(api)
-    for follower in followers:
-        user = get_user_detail(api, follower)
+    get_followers_details(api)

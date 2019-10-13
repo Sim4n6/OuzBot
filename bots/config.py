@@ -2,6 +2,10 @@ import logging
 import os
 import tweepy
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 logger = logging.getLogger()
 
 
