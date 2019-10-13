@@ -13,6 +13,13 @@ pipenv run pre-commit run --all-files
 pipenv run pre-commit install -t pre-commit
 ```
 
+```
+docker build -t updated_image .
+docker images 
+docker run -it -p 5000:5000 --name=Container_name updated_image:latest flask run --host=0.0.0.0
+docker ps
+```
+
 #### References 
 
 Based on :
