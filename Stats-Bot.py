@@ -2,7 +2,7 @@ import tweepy
 import os
 import logging
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -14,10 +14,14 @@ logger = logging.getLogger()
 
 def get_followers_details(api):
 
+    followers = []
+
     logger.info("Retrieving my followers ...")
     for i, follower in enumerate(tweepy.Cursor(api.followers).items()):
         logger.info(f"Follower {i} name: {follower.name}")
-        get_user_detail(api, i, follower.id)
+        followers.append(get_user_detail(api, i, follower.id))
+
+    return followers
 
 
 def get_user_detail(api, i, follower):
@@ -28,14 +32,18 @@ def get_user_detail(api, i, follower):
         f"Username {i}: {user.screen_name} - {user.name} - \n\t is following ? {user.following} - {user.id} - {user.description} - \n\tfollowers count:{user.followers_count} - Statuses count: {user.statuses_count}"
     )
 
+    return user
+
 
 @app.route("/")
 def hello_world():
-    return "Hello, World!"
-
-
-if __name__ == "__main__":
 
     logger.info("Started logging ...")
     api = create_api()
-    get_followers_details(api)
+    followers = get_followers_details(api)
+
+    return render_template("index.html", followers=followers)
+
+
+if __name__ == "__main__":
+    pass
