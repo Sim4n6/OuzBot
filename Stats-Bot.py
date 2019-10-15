@@ -17,10 +17,7 @@ def get_followers_details(api):
     followers = []
 
     logger.info("Retrieving my followers ...")
-    for i, follower in enumerate(tweepy.Cursor(api.followers).items()):
-        logger.info(f"Follower {i} name: {follower.name}")
-        followers.append(get_user_detail(api, i, follower.id))
-
+    followers = tweepy.Cursor(api.followers).items()
     return followers
 
 
