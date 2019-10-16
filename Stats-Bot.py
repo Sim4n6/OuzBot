@@ -14,8 +14,13 @@ logger = logging.getLogger()
 
 def get_friends_not_followers(api):
 
+    fnf = []
     logger.info("Retrieving my friends not followers ...")
-    return tweepy.Cursor(api.friends).items() - tweepy.Cursor(api.followers).items()
+    followers = tweepy.Cursor(api.followers).items()
+    for following in tweepy.Cursor(api.friends).items():
+        if following is not followers: 
+            fnf.append(following)
+    return fnf
 
 
 @app.route("/")
