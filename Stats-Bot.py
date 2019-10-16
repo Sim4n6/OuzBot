@@ -18,7 +18,7 @@ def get_friends_not_followers(api):
     logger.info("Retrieving my friends not followers ...")
     followers = tweepy.Cursor(api.followers).items()
     for following in tweepy.Cursor(api.friends).items():
-        if following is not followers: 
+        if following not in followers: 
             fnf.append(following)
     return fnf
 
