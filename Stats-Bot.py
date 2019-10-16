@@ -15,11 +15,11 @@ logger = logging.getLogger()
 def get_friends_not_followers(api):
 
     fnf = []
-    logger.info("Retrieving my friends not followers ...")
+    logger.info("Retrieving my friends not followers (fnf)...")
     followers = tweepy.Cursor(api.followers).items()
-    for following in tweepy.Cursor(api.friends).items():
-        if following not in followers: 
-            fnf.append(following)
+    for friend in tweepy.Cursor(api.friends).items():
+        if friend not in followers: 
+            fnf.append(friend)
     return fnf
 
 
@@ -28,9 +28,9 @@ def index():
 
     logger.info("Started logging ...")
     api = create_api()
-    users = get_friends_not_followers(api)
+    fnf = get_friends_not_followers(api)
 
-    return render_template("index.html", fnf=users)
+    return render_template("index.html", fnf=fnf)
 
 
 if __name__ == "__main__":
