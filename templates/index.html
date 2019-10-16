@@ -13,12 +13,12 @@
 <body>
     <div class="container">
         <div class="row justify-content-md-center">
-            <h1>Followers list :</h1>
+            <h1>Followers list ({{ len_fnf }}) :</h1>
         </div>
     </div>
     <div class="container">
         <div class="row justify-content-md-center">
-            {% if followers %} {% for follower in fnf %}
+            {% if fnf %} {% for follower in fnf %}
             <div class="card mb-3" style="max-width: 640px;">
                 <div class="row no-gutters">
                     <div class="col-md-4">
