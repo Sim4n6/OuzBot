@@ -17,8 +17,10 @@ def get_friends_not_followers(api):
     fnf = []
     logger.info("Retrieving my friends not followers (fnf)...")
     followers = tweepy.Cursor(api.followers).items()
+    followers_id = [follower.id for follower in followers]
+
     for friend in tweepy.Cursor(api.friends).items():
-        if friend not in followers: 
+        if friend.id not in followers_id: 
             fnf.append(friend)
     return fnf
 
