@@ -30,7 +30,7 @@ def index():
     api = create_api()
     users = get_friends_not_followers(api)
 
-    return render_template("index.html", followers=users)
+    return render_template("index.html", fnf=users)
 
 
 if __name__ == "__main__":
